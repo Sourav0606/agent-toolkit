@@ -1,0 +1,17 @@
+{
+  "protected-paths-gate": {
+    "enabled": true,
+    "PreToolUse": [
+      {
+        "matcher": "replace_file_content|write_to_file",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./.agents/scripts/block_protected_paths.py",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

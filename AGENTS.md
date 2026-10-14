@@ -1,24 +1,27 @@
-# Project Agent Guidelines (AGENTS.md)
+# Project Agent Guidelines
 
-This file defines the project conventions, verification commands, and security boundaries for all agents working in this repository.
+## Layout
+- Source: `src/`  |  Tests: `tests/`
+- Dependencies are already installed. Do not install packages or use the network.
 
-## Verification & Test Command
-- **Test Command**: `python3 -m pytest`
-- Tests must be executed deterministically. Exit code 0 is required for task completion.
+## Verification
+- Full run: `python3 -m pytest -q --tb=short`
+- Single test: `python3 -m pytest -q --tb=short <path>::<test_name>`
+- Always run the full suite once BEFORE editing and record which tests already fail.
+- Done means: tests related to the task pass, and no test that passed before now fails.
+- Trust the command's exit code and output, not any agent's claim.
 
-## Code & Formatting Conventions
-- **Language**: Python 3.12+
-- **Indentation**: 4 spaces, no tabs.
-- **Type Annotations**: Use Python standard type hints.
-- **Edits**: Minimal, surgical changes only. Do not reformat untouched lines.
+## Conventions
+- Python 3.12+, 4-space indentation, no tabs, standard type hints.
+- Minimal, surgical edits. Do not reformat or touch unrelated lines.
 
-## Protected Paths (DO NOT MODIFY)
-The following files and paths are strictly protected and must never be edited during automated fixes without explicit user permission:
-- `.env*`
-- `.github/` and `.gitlab/` CI configurations
-- Dependency lockfiles (`poetry.lock`, `package-lock.json`, etc.)
-- Test files (`test_*.py`, `*_test.py`, `tests/`) are READ-ONLY for implementation fixers to prevent test tampering.
+## Protected Paths (never edit without explicit user permission)
+- `.env*`, `.github/`, `.gitlab/`, lockfiles (`poetry.lock`, `package-lock.json`, ...)
+- Test files (`test_*.py`, `*_test.py`, `tests/`) are read-only during bug fixes.
+  If the fix seems to need a test change, stop and ask the user.
+- Never weaken tests: no removed assertions, no added skip/xfail.
 
-## Failure Escalation Rules
+## Failure Escalation
 - Maximum 3 fix attempts per task.
-- If the same test fails with the identical signature consecutively, the agent must halt and request human clarification.
+- If the same test fails with the same error twice in a row, stop and report.
+- If context is missing, report what is missing. Do not guess.

@@ -7,8 +7,8 @@ def verify_token(payload: dict, current_time: float) -> bool:
     if exp is None:
         return False
 
-    # BUG: Condition is inverted (rejects valid future tokens, accepts expired tokens)
-    if exp >= current_time:
+    # Reject token if expired (expiration time is before or equal to current time)
+    if exp <= current_time:
         return False
 
     return True
