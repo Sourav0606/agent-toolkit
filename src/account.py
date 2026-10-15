@@ -14,5 +14,7 @@ def validate_password(password: str) -> bool:
     if not re.search(r"\d", password):
         return False
 
-    # BUG: Special character regex check is missing!
+    if not re.search(r"[!@#$%^&*()_+\-=\[\]{}|;:,.<>?]", password):
+        return False
+
     return True
