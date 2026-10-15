@@ -101,3 +101,44 @@ When you are ready to build an application, prompt the agent with your goal:
 * **Bug Fix**: *"Fix the race condition in the search input."*
 
 The master **`orchestrator`** will automatically select the right pipeline, deploy the proper subagents, and enforce the Ponytail simplicity standard.
+
+---
+
+## Using in Other Repositories & Apps
+
+### 1. As a GitHub Template (New Projects)
+1. Go to repository **Settings** on GitHub and enable **☑ Template repository**.
+2. Click **Use this template** → **Create a new repository** for each new project.
+
+### 2. Fast Drop-In (Existing Projects)
+Run this inside any existing project folder to inject the entire toolkit:
+```bash
+git clone --depth 1 https://github.com/Sourav0606/agent-toolkit.git /tmp/toolkit
+cp -r /tmp/toolkit/.agents ./
+cp /tmp/toolkit/AGENTS.md ./
+rm -rf /tmp/toolkit
+```
+
+### 3. Git Submodule (Auto-Updating)
+Keep your project synchronized with upstream toolkit improvements:
+```bash
+git submodule add https://github.com/Sourav0606/agent-toolkit.git .agent-toolkit
+ln -s .agent-toolkit/.agents .agents
+ln -s .agent-toolkit/AGENTS.md AGENTS.md
+
+# Update anytime:
+git submodule update --remote
+```
+
+### 4. Global Machine Install (Active Everywhere)
+Make all skills available across all projects on your machine without copying files:
+```bash
+# Global Antigravity config
+mkdir -p ~/.gemini/config/skills ~/.gemini/config/agents
+cp -r .agents/skills/* ~/.gemini/config/skills/
+cp -r .agents/agents/* ~/.gemini/config/agents/
+
+# Global Claude Code config
+mkdir -p ~/.claude/skills
+cp -r .agents/skills/* ~/.claude/skills/
+```
