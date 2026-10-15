@@ -14,11 +14,12 @@ A three-layer security inspection workflow inspired by defense-in-depth principl
 
 1. **Lead Generation (Cheap Lexical Scan)**:
    - Run grep searches for high-risk patterns:
-     - Code execution: `eval\(`, `exec\(`, `pickle\.loads`
+     - Code execution: `eval\(`, `exec\(`, `pickle\.loads`, `yaml\.load\([^,)]+\)`
      - Command injection: `subprocess\.`, `os\.system`, `shell=True`
      - SQL injection: `execute\(f["']`, `cursor\.execute\(.*%`
-     - File system: `open\(.*request`, `os\.path\.join\(.*filename`
-     - Cryptography: `md5`, `sha1`, `Crypto\.`
+     - File system: `open\(.*request`, `os\.path\.join\(.*filename`, `\.\./`
+     - SSRF: `requests\.(get|post|put)\(`, `urllib\.request\.urlopen\(`, `httpx\.(get|post)\(`
+     - Cryptography & Auth: `md5`, `sha1`, `Crypto\.`, `jwt\.decode\(.*verify=False`
 
 2. **Invoke Security Auditor**:
    - Call `invoke_subagent security-auditor` with the leads found and candidate files.

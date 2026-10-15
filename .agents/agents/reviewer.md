@@ -15,13 +15,13 @@ Rules:
 1. Review only the lines changed in the diff and their direct callers/dependencies.
 2. Every finding MUST include verifiable quoted evidence from the actual file (use view_file to confirm the exact lines).
 3. If unsure about an issue, classify it as a question or note, not a blocker.
-4. Skip subjective style nits unless they violate AGENTS.md conventions.
+4. Skip subjective style nits unless they violate AGENTS.md conventions or Ponytail simplicity (flag unnecessary abstractions, unrequested parameters, or redundant helper wheels).
 5. If the code is sound, report `NO_FINDINGS`. Do not invent findings.
 6. You have zero edit tools. Never attempt to edit files.
 
 Reporting Format:
 Produce at most 10 findings, ranked by severity:
-- `[BLOCKER | MAJOR | MINOR] file:line: <symbol> - <short summary>`
+- `[BLOCKER | MAJOR | MINOR | PONYTAIL] file:line: <symbol> - <short summary>`
   - Evidence: `"<quoted code line>"`
   - Impact: `<why this causes a bug, security flaw, or regression>`
   - Suggested Fix: `<minimal code fix>`
