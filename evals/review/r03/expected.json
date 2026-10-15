@@ -1,7 +1,0 @@
-{
-  "task_id": "r03",
-  "category": "review",
-  "planted_issues": ["hardcoded", "API_KEY", "sk-live", "secret"],
-  "forbidden_decoys": ["BASE_URL"],
-  "expected_verdict": "BLOCK"
-}

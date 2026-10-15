@@ -1,7 +1,0 @@
-{
-  "task_id": "r02",
-  "category": "review",
-  "planted_issues": ["mutable default", "items: list = []", "swallowed exception", "except Exception: pass"],
-  "forbidden_decoys": ["log_start"],
-  "expected_verdict": "CHANGES_REQUESTED"
-}

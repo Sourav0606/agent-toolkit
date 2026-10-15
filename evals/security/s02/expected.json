@@ -1,7 +1,0 @@
-{
-  "task_id": "s02",
-  "category": "security",
-  "planted_issues": ["eval", "arbitrary code execution", "code execution", "authorization", "idor", "missing authorization"],
-  "forbidden_decoys": ["hmac.compare_digest", "verify_webhook_signature"],
-  "expected_verdict": "BLOCK"
-}

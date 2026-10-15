@@ -1,29 +1,32 @@
-# Project Agent Guidelines
+# Engineering & Agent Guidelines
 
-## Layout
-- Source: `src/`  |  Tests: `tests/`
-- Dependencies are already installed. Do not install packages or use the network.
+## 1. Project Philosophy & Core Rules
+- **The Ponytail Rule**: Write the minimum code necessary to solve the task. The best code is the code you never wrote.
+  - Before creating new abstractions, helper wheels, or external dependencies, reuse existing project functions or language standard library built-ins.
+  - Avoid speculative generalizations, unrequested options, and wrapper bloat.
+- **Surgical Changes**: Keep edits small and localized. Never reformat adjacent code or touch lines unrelated to the change.
 
-## Verification
-- Full run: `python3 -m pytest -q --tb=short`
-- Single test: `python3 -m pytest -q --tb=short <path>::<test_name>`
-- Always run the full suite once BEFORE editing and record which tests already fail.
-- Done means: tests related to the task pass, and no test that passed before now fails.
-- Trust the command's exit code and output, not any agent's claim.
+## 2. Full-Stack Engineering Standards
+- **Frontend & UI/UX**:
+  - Follow intentional design principles (Anthropic): curated palettes (HSL/OKLCH), responsive typography rhythm, and WCAG AA accessibility. Avoid generic "AI tells".
+  - Add snappy micro-interactions and smooth layout transitions using Motion/Framer Motion.
+  - Build accessible forms with explicit label bindings, schema validation, and focus-on-error management.
+- **Backend & APIs**:
+  - Keep domain logic clean and decoupled from frameworks.
+  - Use structured API patterns: idempotency keys on mutations, RFC 7807 error envelopes, and consistent pagination.
+- **Databases**:
+  - Follow zero-downtime migration standards (Expand-Contract pattern, non-blocking DDL).
+  - Optimize queries with proper indexing (equality first, range second) and eliminate N+1 queries.
 
-## Conventions
-- Python 3.12+, 4-space indentation, no tabs, standard type hints.
-- Minimal, surgical edits. Do not reformat or touch unrelated lines.
-- Ponytail rule: Write the minimum code necessary. Before creating new abstractions or dependencies, reuse existing project functions or Python standard library built-ins.
+## 3. Verification & Testing
+- **Test-First Discipline**: For new features or bug fixes, write the failing test first, verify failure, then write minimal implementation to turn it green.
+- **Deterministic Proof**: Trust test runner exit codes and compiler/build output (`npm test`, `pytest`, `npm run build`), not assumptions.
+- **Never Weaken Tests**: Never remove existing assertions or add skip/xfail markers to force a passing run.
 
-## Protected Paths (never edit without explicit user permission)
-- `.env*`, `.github/`, `.gitlab/`, lockfiles (`poetry.lock`, `package-lock.json`, ...)
-- Test files (`test_*.py`, `*_test.py`, `tests/`) are read-only during bug fixes.
-  If the fix seems to need a test change, stop and ask the user.
-  Exception: `feature-workflow` may add one new file under `tests/` for new functionality, but must NEVER edit or delete existing tests.
-- Never weaken tests: no removed assertions, no added skip/xfail.
+## 4. Protected Paths & Secrets
+- Never commit secrets, tokens, or credentials.
+- Protected files: `.env*`, `.github/`, `.gitlab/`, and package lockfiles (`package-lock.json`, `poetry.lock`, etc.) require explicit user confirmation to modify.
 
-## Failure Escalation
-- Maximum 3 fix attempts per task.
-- If the same test fails with the same error twice in a row, stop and report.
-- If context is missing, report what is missing. Do not guess.
+## 5. Failure Escalation
+- Maximum 3 fix attempts per task before stopping to report the exact blocker.
+- If requirements are ambiguous or key context is missing, stop and interview the user rather than guessing.

@@ -16,9 +16,6 @@ PROTECTED_PATTERNS = [
     r"package-lock\.json",
     r"yarn\.lock",
     r"pnpm-lock\.yaml",
-    r"/tests/",
-    r"(?:^|/)test_[^/]+\.py$",
-    r"(?:^|/)[^/]+_test\.py$",
 ]
 
 
