@@ -1,7 +1,27 @@
+# OS & Editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Environment & Secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Node / Frontend
+node_modules/
+dist/
+build/
+.next/
+out/
+.turbo/
+
+# Python
 __pycache__/
 *.py[cod]
-*$py.class
 .pytest_cache/
-.benchmarks/
-.DS_Store
-.DS_Store
+.venv/
+venv/
