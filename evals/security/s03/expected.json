@@ -1,0 +1,7 @@
+{
+  "task_id": "s03",
+  "category": "security",
+  "planted_issues": [],
+  "forbidden_decoys": ["hmac.compare_digest", "cursor.execute", "secure_token_compare"],
+  "expected_verdict": "APPROVE"
+}

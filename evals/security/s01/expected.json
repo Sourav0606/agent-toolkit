@@ -1,0 +1,7 @@
+{
+  "task_id": "s01",
+  "category": "security",
+  "planted_issues": ["path traversal", "md5", "weak password hash", "download_attachment"],
+  "forbidden_decoys": ["secrets.token_hex", "parameterized query", "lookup_user"],
+  "expected_verdict": "BLOCK"
+}

@@ -1,0 +1,12 @@
+diff --git a/src/stats.py b/src/stats.py
+new file mode 100644
+--- /dev/null
++++ b/src/stats.py
+@@ -0,0 +1,9 @@
++from typing import Sequence
++
++def calculate_mean(values: Sequence[float]) -> float:
++    """Compute arithmetic mean of a sequence of numbers."""
++    if not values:
++        raise ValueError("Cannot calculate mean of empty sequence")
++    return sum(values) / len(values)

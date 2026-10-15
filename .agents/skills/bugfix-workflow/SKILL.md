@@ -24,5 +24,6 @@ Follow these steps in strict order:
    - If verdict is `test_bug`, `env_issue`, or `ambiguous_spec`: Stop and report to the user immediately.
 
 ## Escalation and Safety:
+
 Follow the Failure Escalation Rules in `AGENTS.md`.
 Finish with: the final git diff, the passing test output, and any areas not verified.

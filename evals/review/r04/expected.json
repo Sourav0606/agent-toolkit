@@ -1,0 +1,7 @@
+{
+  "task_id": "r04",
+  "category": "review",
+  "planted_issues": [],
+  "forbidden_decoys": ["calculate_mean", "mean", "ValueError"],
+  "expected_verdict": "APPROVE"
+}

@@ -1,0 +1,7 @@
+{
+  "task_id": "r01",
+  "category": "review",
+  "planted_issues": ["sql injection", "SELECT * FROM users", "execute(f\"SELECT"],
+  "forbidden_decoys": ["logger.info", "logging f-string"],
+  "expected_verdict": "BLOCK"
+}

@@ -1,0 +1,20 @@
+diff --git a/src/processor.py b/src/processor.py
+new file mode 100644
+--- /dev/null
++++ b/src/processor.py
+@@ -0,0 +1,15 @@
++import logging
++
++def log_start(message: str) -> None:
++    # Decoy: Clean logging helper
++    logging.info(f"Start: {message}")
++
++def process_items(items: list = [], options: dict = {}) -> list:
++    # Planted issue 1: mutable default argument
++    log_start("processing items")
++    try:
++        items.append("processed")
++        return items
++    except Exception:
++        # Planted issue 2: swallowed exception
++        pass

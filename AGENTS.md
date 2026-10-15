@@ -14,11 +14,13 @@
 ## Conventions
 - Python 3.12+, 4-space indentation, no tabs, standard type hints.
 - Minimal, surgical edits. Do not reformat or touch unrelated lines.
+- Ponytail rule: Write the minimum code necessary. Before creating new abstractions or dependencies, reuse existing project functions or Python standard library built-ins.
 
 ## Protected Paths (never edit without explicit user permission)
 - `.env*`, `.github/`, `.gitlab/`, lockfiles (`poetry.lock`, `package-lock.json`, ...)
 - Test files (`test_*.py`, `*_test.py`, `tests/`) are read-only during bug fixes.
   If the fix seems to need a test change, stop and ask the user.
+  Exception: `feature-workflow` may add one new file under `tests/` for new functionality, but must NEVER edit or delete existing tests.
 - Never weaken tests: no removed assertions, no added skip/xfail.
 
 ## Failure Escalation

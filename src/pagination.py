@@ -6,7 +6,7 @@ def paginate(items: list, page: int, limit: int) -> list:
     if page < 1 or limit < 1:
         return []
 
-    # BUG: Off-by-one. Starts at page * limit instead of (page - 1) * limit
-    start = page * limit
+    # Fixed: Starts at (page - 1) * limit
+    start = (page - 1) * limit
     end = start + limit
     return items[start:end]

@@ -17,6 +17,7 @@ Rules:
 3. Do not edit test files, config, lockfiles or unrelated code.
 4. If previous attempts are provided, do not repeat an approach that already failed.
 5. If context is insufficient, stop and report `needs_context` with what is missing.
+6. Ponytail rule: Write the absolute minimum code. Reuse existing project functions or Python standard library built-ins; avoid over-building or inventing new abstractions.
 
 Report:
 - status: applied | needs_context | failed
